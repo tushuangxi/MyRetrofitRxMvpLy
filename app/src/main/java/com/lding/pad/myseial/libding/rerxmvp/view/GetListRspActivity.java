@@ -15,14 +15,22 @@ import com.lding.pad.myseial.libding.rerxmvp.presenter.GetListRspPresenter;
 public class GetListRspActivity extends BaseMvpActivity<interfaceUtilsAll.GetListRspView, GetListRspPresenter> implements interfaceUtilsAll.GetListRspView {
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
 
         getPresenter().getGetListRsp(ServiceMapParams.getGetListRspMapParams());
+    }
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_main;
+    }
+
+    @Override
+    protected void initView() {
+
+
     }
 
     @Override

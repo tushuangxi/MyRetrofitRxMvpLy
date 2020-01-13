@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
 import com.lding.pad.myseial.R;
+import com.lding.pad.myseial.libding.rerxmvp.base.BaseActivity;
 import com.lding.pad.myseial.libding.rerxmvp.view.GetListRspActivity;
 import com.lding.pad.myseial.library.loadinglibrary.conn.DemoApp;
 import com.lding.pad.myseial.library.loadinglibrary.main.MainActivity;
@@ -31,7 +32,7 @@ import rx.schedulers.Schedulers;
  * 既能提供充足的加载时间, 又能赚取商业利润和产品曝光. 最优的方案是根据耗时任务需要的时间, 设置首屏的显示时间. 本文使用Dagger与RxJava控制首页的显示时间.
  */
 
-public class SplashActivity extends AppCompatActivity {
+public class SplashActivity extends BaseActivity {
 
     @Inject Lazy<SplashLibrary> splashLibraryLazy; // 延迟闪屏库
 
@@ -47,7 +48,6 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_splash);
 
         DemoApp.app(this).splashComponent().inject(this);
 
@@ -55,6 +55,17 @@ public class SplashActivity extends AppCompatActivity {
         Preconditions.checkNotNull(splashLibraryLazy);
         Preconditions.checkNotNull(mObservable);
         Preconditions.checkNotNull(initialized);
+    }
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_splash;
+    }
+
+    @Override
+    protected void initView() {
+
+
     }
 
     //使用RxJava加载启动库, 使用计算线程, 在成功后跳转主页面, 在失败后弹出信息提示. 注意在加载库的控制,
