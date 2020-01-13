@@ -13,7 +13,7 @@ public class ZTLUtils {
         this.activity = activity;
     }
 
-    public void setTranslucentStatus() {
+    public void setTranslucentStatusSplash() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             // 透明状态栏
             this.activity.getWindow().addFlags(
@@ -25,6 +25,22 @@ public class ZTLUtils {
             tintManager.setStatusBarTintEnabled(true);
             // 设置状态栏的颜色
             tintManager.setStatusBarTintResource(R.color.holo_purple);
+            this.activity.getWindow().getDecorView().setFitsSystemWindows(true);
+        }
+    }
+
+    public void setTranslucentStatusAll() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            // 透明状态栏
+            this.activity.getWindow().addFlags(
+                    WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            // 透明导航栏
+            this.activity.getWindow().addFlags(
+                    WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+            SystemStatusManager tintManager = new SystemStatusManager(this.activity);
+            tintManager.setStatusBarTintEnabled(true);
+            // 设置状态栏的颜色
+            tintManager.setStatusBarTintResource(R.color.holo_transparent);
             this.activity.getWindow().getDecorView().setFitsSystemWindows(true);
         }
     }

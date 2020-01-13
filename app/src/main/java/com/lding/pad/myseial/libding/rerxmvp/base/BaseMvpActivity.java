@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 
 import com.lding.pad.myseial.libding.rerxmvp.interfaceUtils.interfaceUtilsAll;
+import com.lding.pad.myseial.libding.utils.ZTLUtils;
 
 
 //不需要Mvp的Activity的直接继承BaseActivity
@@ -15,7 +16,7 @@ public abstract class BaseMvpActivity<V extends interfaceUtilsAll.IBaseView, P e
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        new ZTLUtils(this).setTranslucentStatusAll();
         if (presenter == null) {
             presenter = createPresenter();
         }

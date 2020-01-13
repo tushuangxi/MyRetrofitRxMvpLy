@@ -159,4 +159,5 @@
     <color name="test">#AAC1FF</color>
 
     <color name="holo_purple">#ffaa66cc</color>
+    <color name="holo_transparent">#0000</color> //透明
 </resources>
