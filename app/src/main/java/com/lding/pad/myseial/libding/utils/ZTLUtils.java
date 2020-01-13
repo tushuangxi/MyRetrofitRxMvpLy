@@ -24,7 +24,7 @@ public class ZTLUtils {
             SystemStatusManager tintManager = new SystemStatusManager(this.activity);
             tintManager.setStatusBarTintEnabled(true);
             // 设置状态栏的颜色
-            tintManager.setStatusBarTintResource(R.color.colorPrimary);
+            tintManager.setStatusBarTintResource(R.color.holo_purple);
             this.activity.getWindow().getDecorView().setFitsSystemWindows(true);
         }
     }

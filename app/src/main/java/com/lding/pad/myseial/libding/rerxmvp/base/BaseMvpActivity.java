@@ -15,6 +15,7 @@ public abstract class BaseMvpActivity<V extends interfaceUtilsAll.IBaseView, P e
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         if (presenter == null) {
             presenter = createPresenter();
         }
@@ -26,6 +27,7 @@ public abstract class BaseMvpActivity<V extends interfaceUtilsAll.IBaseView, P e
         if (presenter != null && view != null) {
             presenter.attachView(view);
         }
+
     }
 
     public abstract P createPresenter();

@@ -14,12 +14,14 @@ import com.lding.pad.myseial.libding.rerxmvp.presenter.GetListRspPresenter;
 
 public class GetListRspActivity extends BaseMvpActivity<interfaceUtilsAll.GetListRspView, GetListRspPresenter> implements interfaceUtilsAll.GetListRspView {
 
+    private  GetListRspPresenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        getPresenter().getGetListRsp(ServiceMapParams.getGetListRspMapParams());
+        presenter = getPresenter();
+        presenter.getGetListRsp(ServiceMapParams.getGetListRspMapParams());
     }
 
     @Override
@@ -27,11 +29,6 @@ public class GetListRspActivity extends BaseMvpActivity<interfaceUtilsAll.GetLis
         return R.layout.activity_main;
     }
 
-    @Override
-    protected void initView() {
-
-
-    }
 
     @Override
     public GetListRspPresenter createPresenter() {

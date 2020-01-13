@@ -10,7 +10,11 @@ import android.widget.Toast;
 
 import com.lding.pad.myseial.R;
 import com.lding.pad.myseial.libding.rerxmvp.base.BaseActivity;
+import com.lding.pad.myseial.libding.rerxmvp.base.BaseMvpActivity;
+import com.lding.pad.myseial.libding.rerxmvp.base.BasePresenter;
+import com.lding.pad.myseial.libding.rerxmvp.interfaceUtils.interfaceUtilsAll;
 import com.lding.pad.myseial.libding.rerxmvp.view.GetListRspActivity;
+import com.lding.pad.myseial.libding.utils.ZTLUtils;
 import com.lding.pad.myseial.library.loadinglibrary.conn.DemoApp;
 import com.lding.pad.myseial.library.loadinglibrary.main.MainActivity;
 
@@ -47,7 +51,7 @@ public class SplashActivity extends BaseActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        new ZTLUtils(this).setTranslucentStatus();
 
         DemoApp.app(this).splashComponent().inject(this);
 
@@ -60,12 +64,6 @@ public class SplashActivity extends BaseActivity {
     @Override
     protected int getLayoutId() {
         return R.layout.activity_splash;
-    }
-
-    @Override
-    protected void initView() {
-
-
     }
 
     //使用RxJava加载启动库, 使用计算线程, 在成功后跳转主页面, 在失败后弹出信息提示. 注意在加载库的控制,

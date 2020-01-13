@@ -13,6 +13,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import com.lding.pad.myseial.libding.utils.AppActivityManager;
 import com.lding.pad.myseial.libding.utils.XPermission;
+import com.lding.pad.myseial.libding.utils.ZTLUtils;
 import com.lding.pad.myseial.libding.widget.loading.LoadingActivityDialog;
 
 import java.util.ArrayList;
@@ -31,15 +32,14 @@ public abstract class BaseActivity extends AppCompatActivity {
         doBeforeSetcontentView();
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(getLayoutId());
-
         AppActivityManager.getInstance().addActivity(this);//新建时添加到栈
         ButterKnife.bind(this);//绑定Activity 必须在setContentView之后
 
         allActivity1.add(this);
-        initView();
-        initArgsData();
+
     }
 
+    protected abstract int getLayoutId();
 
     /**
      * 设置layout前配置
@@ -68,13 +68,6 @@ public abstract class BaseActivity extends AppCompatActivity {
         //设置当前窗体为全屏显示
         window.setFlags(flag, flag);
     }
-
-    protected abstract int getLayoutId();
-
-    protected void initArgsData() {
-    }
-
-    protected abstract void initView();
 
     @Override
     protected void onResume() {
