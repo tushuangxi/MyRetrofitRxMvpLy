@@ -1,0 +1,12 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/mBackground"
+    >
+  <pl.droidsonroids.gif.GifImageView
+      android:id="@+id/gifImageView"
+      android:layout_width="120dp"
+      android:layout_height="120dp"
+      android:layout_centerInParent="true"
+      />
+</RelativeLayout>
