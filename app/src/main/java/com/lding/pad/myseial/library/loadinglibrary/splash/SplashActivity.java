@@ -13,11 +13,13 @@ import com.lding.pad.myseial.R;
 import com.lding.pad.myseial.libding.rerxmvp.base.BaseActivity;
 import com.lding.pad.myseial.libding.rerxmvp.base.BasePermissionsAndStackActivity;
 import com.lding.pad.myseial.libding.rerxmvp.view.GetListRspActivity;
+import com.lding.pad.myseial.libding.utils.SharedPrefsUtil;
 import com.lding.pad.myseial.libding.utils.UiUtil;
 import com.lding.pad.myseial.libding.utils.XPermission;
 import com.lding.pad.myseial.libding.utils.ZTLUtils;
 import com.lding.pad.myseial.library.loadinglibrary.conn.DemoApp;
 import com.lding.pad.myseial.library.loadinglibrary.main.MainActivity;
+import com.lding.pad.myseial.library.testloading.GuideActivity;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -125,7 +127,7 @@ public class SplashActivity extends BasePermissionsAndStackActivity {
         mSubscription = null;
     }
 
-    private static void openMainAndFinish(@NonNull Activity activity, @NonNull SplashLibrary splashLibrary) {
+    private  void openMainAndFinish(@NonNull Activity activity, @NonNull SplashLibrary splashLibrary) {
         // 提示加载库完成
         Toast.makeText(activity, splashLibrary.initializedString(), Toast.LENGTH_SHORT).show();
 
@@ -135,12 +137,13 @@ public class SplashActivity extends BasePermissionsAndStackActivity {
 //        activity.startActivity(intent);
 
         //登录
-        Intent intent = new Intent(activity, GetListRspActivity.class);
-        intent.putExtra(MainActivity.EXTRA_USEFUL_STRING, splashLibrary.usefulString());
-        activity.startActivity(intent);
+//        Intent intent = new Intent(activity, GetListRspActivity.class);
+//        intent.putExtra(MainActivity.EXTRA_USEFUL_STRING, splashLibrary.usefulString());
+//        activity.startActivity(intent);
+//        activity.finish();
 
-        // 跳转页面完成关闭当前页面
-        activity.finish();
+
+        checkGo();
     }
 
     private void requestPermissionsOne() {
@@ -225,9 +228,44 @@ public class SplashActivity extends BasePermissionsAndStackActivity {
         UiUtil.postDelayed(new Runnable() {
             @Override
             public void run() {
-                readyGo(GetListRspActivity.class);
+//                readyGo(GetListRspActivity.class);
+
+
+                checkGo();
             }
         }, 2000);
+    }
+
+    private  void checkGo() {
+        boolean  isFirstRun = SharedPrefsUtil.getValue(SplashActivity.this, "isFirstRun","isFirstRun", true);
+        if (!isFirstRun) {
+            goHome();
+        } else {
+            SharedPrefsUtil.putValue(SplashActivity.this,"isFirstRun", "isFirstRun", false);
+            goGuide();
+        }
+    }
+
+
+    public void goHome() {
+        switchTo(this,GetListRspActivity.class,true);
+    }
+
+    public void goGuide() {
+        switchTo(this, GuideActivity.class,true);
+    }
+
+    //----------------------------------   其他功能   ---------------------------------------------------
+
+    //不携带数据跳转Activity
+    public static void switchTo(Activity activity, Class<? extends Activity> targetActivity, boolean needFinish) {
+        if (activity == null) {
+            return;
+        }
+        activity.startActivity(new Intent(activity, targetActivity));
+        if (needFinish) {
+            activity.finish();
+        }
     }
 
 }
