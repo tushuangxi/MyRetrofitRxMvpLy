@@ -30,7 +30,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         doBeforeSetcontentView();
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
+//        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(getLayoutId());
         AppActivityManager.getInstance().addActivity(this);//新建时添加到栈
         ButterKnife.bind(this);//绑定Activity 必须在setContentView之后

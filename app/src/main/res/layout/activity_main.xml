@@ -1,7 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/silver">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:background="@color/red"/>
+        <com.lding.pad.myseial.libding.widget.SimpleToolbar
+            style="@style/SimpleToolbar"
+            app:stb_navigation_icon="@mipmap/back_ico"
+            app:stb_title_text="首页"
+            app:stb_right_text="设置"
+            tools:ignore="MissingConstraints" />
+    </LinearLayout>
+
+
 
 </android.support.constraint.ConstraintLayout>

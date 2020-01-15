@@ -28,4 +28,15 @@
         <attr name="textSize" format="dimension" />
         <attr name="scrollSpeed" format="integer" />
     </declare-styleable>
+
+
+    <declare-styleable name="SimpleToolbar">
+        <attr name="stb_navigation_icon" format="reference"/>
+        <attr name="stb_title_text" format="string"/>
+        <attr name="stb_title_text_color" format="color"/>
+        <attr name="stb_title_text_size" format="dimension"/>
+        <attr name="stb_right_text" format="string"/>
+        <attr name="stb_right_text_size" format="dimension"/>
+        <attr name="stb_right_text_color" format="color"/>
+    </declare-styleable>
 </resources>

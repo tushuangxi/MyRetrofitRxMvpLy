@@ -50,5 +50,14 @@
         <item name="android:backgroundDimAmount">0.6</item>
     </style>
 
-
+    <!--SimpleToolbar 样式-->
+    <style name="SimpleToolbar">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:background">@color/red</item>
+        <item name="android:layout_height">55dp</item>
+        <item name="stb_title_text_color">@color/black</item>
+        <item name="stb_title_text_size">18dp</item>
+        <item name="stb_right_text_color">@color/blue</item>
+        <item name="stb_right_text_size">16dp</item>
+    </style>
 </resources>
