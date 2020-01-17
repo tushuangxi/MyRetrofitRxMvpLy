@@ -77,4 +77,8 @@ dependencies {
 
     //RxAppCompatActivity
     //    implementation 'com.trello.rxlifecycle2:rxlifecycle-components:2.2.2'
+
+
+    //降低Android非必要crash
+//    implementation 'com.wanjian:cockroach:0.0.5'
 }

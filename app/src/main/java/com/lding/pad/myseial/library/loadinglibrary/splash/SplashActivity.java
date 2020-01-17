@@ -72,6 +72,9 @@ public class SplashActivity extends BasePermissionsAndStackActivity {
 //        requestPermissionsOne();
         //2、请求多个权限
         requestPermissionsMore();
+
+
+//        throw new NullPointerException("自定义 降低Android非必要crash");
     }
 
     @Override
@@ -210,6 +213,8 @@ public class SplashActivity extends BasePermissionsAndStackActivity {
             @Override
             public void onPermissionDenied() {
 //                XPermission.showTipsDialog(SplashActivity.this);
+
+
             }
         });
     }

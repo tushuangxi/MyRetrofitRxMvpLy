@@ -2,11 +2,16 @@ package com.lding.pad.myseial.library.loadinglibrary.conn;
 
 import android.app.Application;
 import android.content.Context;
+import android.os.Handler;
+import android.os.Looper;
 import android.os.StrictMode;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.util.Log;
+import android.widget.Toast;
 
 import com.lding.pad.myseial.libding.utils.LibLoader;
+import com.lding.pad.myseial.library.cockroach.Cockroach;
 import com.lding.pad.myseial.library.loadinglibrary.main.DaggerMainComponent;
 import com.lding.pad.myseial.library.loadinglibrary.main.MainComponent;
 import com.lding.pad.myseial.library.loadinglibrary.main.MainModule;
@@ -37,12 +42,45 @@ public class DemoApp extends Application {
         LibLoader.init(this);//接收主module传递的上下文，提供给lib内部需要context的工具类使用
         LeakCanary.install(this); // 内存泄露
 
+        //安装 降低Android非必要crash
+        toCockroach();
+        //卸载 降低Android非必要crash
+//        unCockroach();
+
         StrictMode.enableDefaults();
 
         // 应用组件初始化
         mDemoComponent = DaggerDemoComponent.builder()
                 .demoModule(new DemoModule(this))
                 .build();
+    }
+
+    private void unCockroach() {
+        // 卸载代码
+        Cockroach.uninstall();
+    }
+
+    private void toCockroach() {
+
+        Cockroach.install(new Cockroach.ExceptionHandler() {
+            // handlerException内部建议手动try{  你的异常处理逻辑  }catch(Throwable e){ } ，以防handlerException内部再次抛出异常，导致循环调用handlerException
+            @Override
+            public void handlerException(final Thread thread, final Throwable throwable) {
+                new Handler(Looper.getMainLooper()).post(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            Log.d("Cockroach", thread + "\n" + throwable.toString());
+                            throwable.printStackTrace();
+                            Toast.makeText(mContext, "Exception Happend\n" + thread + "\n" + throwable.toString(), Toast.LENGTH_SHORT).show();
+//                        throw new RuntimeException("..."+(i++));
+                        } catch (Throwable e) {
+
+                        }
+                    }
+                });
+            }
+        });
     }
 
     //创建一个静态的方法，以便获取context对象
